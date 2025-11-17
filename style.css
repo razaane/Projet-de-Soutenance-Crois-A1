@@ -1,0 +1,88 @@
+/* .section{
+    background-image: url("./images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
+.PlanSection {
+    background-image: url("./images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        'conf conf empty1 serv sec'
+        'resp resp empty2 empty3 empty4'
+        'resp resp empty5 pers arch'
+    ;
+    height: 100%;
+}
+
+.salleConference {
+    grid-area: conf;
+    border: solid red;;
+    top: 50px;
+    left: 30px;
+    width: 390px;
+    height: 190px;
+}
+.reception {
+    grid-area: resp;
+    border: solid red;
+    width: 390px;
+    height: 380px;
+}
+
+.salleServeurs {
+    grid-area: serv;
+    border: solid  red;
+    width: 230px;
+    height: 200px;
+
+}
+
+.salleSecurite {
+    grid-area: sec;
+    border: solid  red;
+   width: 230px;
+    height: 200px;
+}
+
+.sallePersonnel {
+    grid-area: pers;
+    border: solid  red;
+    width: 230px;
+    height: 190px;
+}
+
+.salleArchive {
+    grid-area: arch;
+    border: solid  red;
+    width: 230px;
+    height: 190px;
+}
+
+.empty1 {
+    grid-area: empty1;
+}
+
+.empty2 {
+    grid-area: empty2;
+}
+
+.empty3 {
+    grid-area: empty3;
+}
+
+.empty4 {
+    grid-area: empty4;
+}
+
+.empty5 {
+    grid-area: empty5;
+}
