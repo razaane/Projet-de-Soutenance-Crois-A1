@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,115 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="">
+
+<body>
     <main class="flex w-full h-screen border-2">
         <div class="w-[20%]">
-            hello
+            <div class="flex gap-2 mt-[6px] ">
+                <button id="btnAfficher" type="button"
+                    class="bg-blue-500 rounded-lg hover:bg-blue-300 text-black text-xs font-bold h-[7vh] w-[9vw] ">
+                    Ajouter Un Employé
+                </button>
+                <button id="btnEmploye"
+                    class="bg-green-500 rounded-lg hover:bg-green-300 text-black text-xs font-bold h-[7vh] w-[10vw] ">
+                    Afficher Les Employés
+                </button>
+                <div id="listeEmployes" class="mt-4 grid gap-4"></div>
+            </div>
+
+            <div id="modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+
+                <div
+                    class="bg-white rounded-xl shadow-xl w-[90%] max-w-[450px] max-h-[90vh] overflow-y-auto p-5 relative no-scrollbar">
+
+                    <button id="closeModal"
+                        class="absolute top-3 right-3 text-gray-600 hover:text-black text-xl font-bold">
+                        ✕
+                    </button>
+
+                    <h1 class="text-black text-center text-xl font-bold mb-4">
+                        Les informations d'Employé
+                    </h1>
+
+                    <form id="formulaire" class="space-y-3">
+
+                        <div class="flex flex-col items-center">
+                            <label class="font-bold text-sm mb-2">Photo (URL) :</label>
+
+                            <div id="container_photo"
+                                class="w-24 h-24 rounded-lg overflow-hidden bg-gray-50 border-2 border-gray-500 flex items-center justify-center mb-2">
+                                <img id="photo_preview" class="hidden w-full h-full object-cover" />
+                                <span id="text_container_photo" class="text-xs text-gray-400">No image</span>
+                            </div>
+
+                            <input type="url" id="photo_url" placeholder="Coller le lien de l'image"
+                                class="border border-2 rounded-lg w-full p-2 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="font-bold text-sm">Nom et Prénom :</label>
+                            <input type="text" id="nom" class="border border-2 rounded-lg w-full p-2 text-sm"
+                                placeholder="Entrer le nom et prénom">
+                        </div>
+
+                        <div>
+                            <label class="font-bold text-sm">Email :</label>
+                            <input type="email" id="email" class="border border-2 rounded-lg w-full p-2 text-sm"
+                                placeholder="xxxxx@xxx.com">
+                        </div>
+
+                        <div>
+                            <label class="font-bold text-sm">Numéro de Téléphone :</label>
+                            <input type="tel" id="Téléphone" class="border border-2 rounded-lg w-full p-2 text-sm"
+                                placeholder="+212 X XX XX XX XX">
+                        </div>
+
+                        <div>
+                            <label class="font-bold text-sm">Rôle dans l'entreprise :</label>
+                            <select id="role" class="border border-2 rounded-lg w-full p-2 text-sm">
+                                <option disabled selected>Choisir un rôle</option>
+                                <option>Réception</option>
+                                <option>Salle Serveurs</option>
+                                <option>Salle Sécurité</option>
+                                <option>Manager</option>
+                                <option>Nettoyage</option>
+                                <option>Autre</option>
+                            </select>
+                        </div>
+
+                        <div id="experience_container">
+                            <label class="font-bold text-sm">Expériences Professionnelles :</label>
+
+                            <div class="flex items-center gap-2 experience-item">
+                                <textarea class="experience-input border border-2 rounded-lg w-full p-2 text-sm"
+                                    rows="1" placeholder="Décrire vos expériences"></textarea>
+
+                                <button type="button"
+                                    class="btn-add bg-green-500 hover:bg-green-400 text-white font-bold rounded-lg px-3 py-2">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                        <button
+                            class="bg-green-600 hover:bg-green-500 text-white rounded-lg font-bold w-full py-2 text-center mt-3">
+                            Ajouter
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+
+
         </div>
         <section class=" PlanSection border-2 w-[80%] h-screen">
             <div class="parent h-full">
-                <div class="salleConference border-2"></div>
-                <div class="reception "></div>
-                <div class="salleServeurs "></div>
-                <div class="salleSecurite "></div>
-                <div class="sallePersonnel"></div>
-                <div class="salleArchive"></div>
+                <div class="salleConference border-2"> Salle de Conférence</div>
+                <div class="reception ">Réception</div>
+                <div class="salleServeurs ">Salle de Serveurs</div>
+                <div class="salleSecurite ">Salle de Sécurités</div>
+                <div class="sallePersonnel">Salle de Personnel</div>
+                <div class="salleArchive"> Salle D'Archive</div>
                 <div class="empty1"></div>
                 <div class="empty2"></div>
                 <div class="empty3"></div>
@@ -28,7 +125,7 @@
             </div>
         </section>
     </main>
-    
+    <script src="main.js"></script>
 </body>
 
 </html>
