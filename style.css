@@ -81,11 +81,167 @@
     grid-area: empty5;
 } */
 
+.PlanSection {
+    background-image: url("./images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        'conf conf empty1 serv sec'
+        'resp resp empty2 empty3 empty4'
+        'resp resp empty5 pers arch';
+    gap: 10px;
+    height: 100%;
+}
+
+.salleConference {
+    grid-area: conf;
+    border: solid red;
+}
+
+.reception {
+    grid-area: resp;
+    border: solid red;
+}
+
+.salleServeurs {
+    grid-area: serv;
+    border: solid red;
+}
+
+.salleSecurite {
+    grid-area: sec;
+    border: solid red;
+}
+
+.sallePersonnel {
+    grid-area: pers;
+    border: solid red;
+}
+
+.salleArchive {
+    grid-area: arch;
+    border: solid red;
+}
+
+.empty1 {
+    grid-area: empty1;
+}
+
+.empty2 {
+    grid-area: empty2;
+}
+
+.empty3 {
+    grid-area: empty3;
+}
+
+.empty4 {
+    grid-area: empty4;
+}
+
+.empty5 {
+    grid-area: empty5;
+}
+
+/* Boutons salle */
+.salleConference,
+.reception,
+.salleServeurs,
+.salleSecurite,
+.sallePersonnel,
+.salleArchive {
+    position: relative;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btnSalle {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 5px;
+    background-color: #3bf651;
+    color: white;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* Modal contenu */
+#salleContent h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .parent {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .parent {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 5px;
+    }
+
+    .btnSalle {
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+}
+
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none; 
-  scrollbar-width: none;     
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.zone-empty {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+
+#unsignedEmployees div {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 2px;
+    width: 60px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 9px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    transition: transform 0.2s;
+}
+#unsignedEmployees div:hover {
+    transform: scale(1.1);
+    background-color: #e0e0ff;
+}
+
+#unsignedEmployees img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 2px;
 }
