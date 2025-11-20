@@ -12,17 +12,33 @@
 <body>
     <main class="flex w-full h-screen border-2">
         <div class="w-[20%]">
-            <div class="flex gap-2 mt-[6px] ">
+            <div class="flex flex-col gap-2 mt-[6px] ">
                 <button id="btnAfficher" type="button"
-                    class="bg-blue-500 rounded-lg hover:bg-blue-300 text-black text-xs font-bold h-[7vh] w-[9vw] ">
+                    class="bg-blue-500 rounded-lg hover:bg-blue-300 text-black text-l font-bold h-[8vh] w-full ">
                     Ajouter Un Employé
                 </button>
                 <button id="btnEmploye"
-                    class="bg-green-500 rounded-lg hover:bg-green-300 text-black text-xs font-bold h-[7vh] w-[10vw] ">
+                    class="bg-green-500 rounded-lg hover:bg-green-300 text-black text-l  font-bold h-[8vh] w-full ">
                     Afficher Les Employés
                 </button>
-                <div id="listeEmployes" class="mt-4 grid gap-4"></div>
             </div>
+
+            <div id="employesSection" class="mt-4 hidden opacity-0 transition-opacity duration-500">
+                <h1 class="text-xl font-bold mb-3">Liste des employés</h1>
+                <div id="listeEmployes" class="flex flex-col gap-2 max-h-[60vh] overflow-y-auto pr-2 scrollbar-hide">
+                </div>
+            </div>
+
+            <div id="profileModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+                <div
+                    class="bg-white rounded-xl shadow-xl w-[90%] max-w-[450px] max-h-[90vh] overflow-y-auto p-5 relative no-scrollbar">
+                    <button id="closeProfile"
+                        class="absolute top-3 right-3 text-gray-600 hover:text-black text-xl font-bold">✕</button>
+                    <div id="profileContent"></div>
+                </div>
+            </div>
+
+
 
             <div id="modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
 
@@ -45,7 +61,7 @@
 
                             <div id="container_photo"
                                 class="w-24 h-24 rounded-lg overflow-hidden bg-gray-50 border-2 border-gray-500 flex items-center justify-center mb-2">
-                                <img id="photo_preview" class="hidden w-full h-full object-cover" />
+                                <img id="photo_preview" class=" hidden w-full h-full object-cover" />
                                 <span id="text_container_photo" class="text-xs text-gray-400">No image</span>
                             </div>
 
@@ -109,14 +125,14 @@
 
 
         </div>
-        <section class=" PlanSection border-2 w-[80%] h-screen">
+        <section class="PlanSection border-2 w-[90%] max-w-[1200px] h-screen mx-auto mt-5">
             <div class="parent h-full">
-                <div class="salleConference border-2"> Salle de Conférence</div>
-                <div class="reception ">Réception</div>
-                <div class="salleServeurs ">Salle de Serveurs</div>
-                <div class="salleSecurite ">Salle de Sécurités</div>
-                <div class="sallePersonnel">Salle de Personnel</div>
-                <div class="salleArchive"> Salle D'Archive</div>
+                <div class="salleConference">Salle de Conférence <button class="btnSalle">+</button></div>
+                <div class="reception">Réception <button class="btnSalle">+</button></div>
+                <div class="salleServeurs">Salle de Serveurs <button class="btnSalle">+</button></div>
+                <div class="salleSecurite">Salle de Sécurités <button class="btnSalle">+</button></div>
+                <div class="sallePersonnel">Salle de Personnel <button class="btnSalle">+</button></div>
+                <div class="salleArchive">Salle D'Archive <button class="btnSalle">+</button></div>
                 <div class="empty1"></div>
                 <div class="empty2"></div>
                 <div class="empty3"></div>
@@ -124,6 +140,164 @@
                 <div class="empty5"></div>
             </div>
         </section>
+
+        <!-- Modal Salle -->
+        <div id="salleModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-xl shadow-xl w-[90%] max-w-[400px] max-h-[90vh] overflow-y-auto p-5 relative">
+                <button id="closeSalleModal"
+                    class="absolute top-3 right-3 text-gray-600 hover:text-black text-xl font-bold">✕</button>
+                <div id="salleContent"></div>
+            </div>
+        </div>
+
+        <style>
+            .PlanSection {
+                background-image: url("./images/background.jpg");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            .parent {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                grid-template-areas:
+                    'conf conf empty1 serv sec'
+                    'resp resp empty2 empty3 empty4'
+                    'resp resp empty5 pers arch';
+                gap: 10px;
+                height: 100%;
+            }
+
+            .salleConference {
+                grid-area: conf;
+                border: solid red;
+            }
+
+            .reception {
+                grid-area: resp;
+                border: solid red;
+            }
+
+            .salleServeurs {
+                grid-area: serv;
+                border: solid red;
+            }
+
+            .salleSecurite {
+                grid-area: sec;
+                border: solid red;
+            }
+
+            .sallePersonnel {
+                grid-area: pers;
+                border: solid red;
+            }
+
+            .salleArchive {
+                grid-area: arch;
+                border: solid red;
+            }
+
+            .empty1 {
+                grid-area: empty1;
+            }
+
+            .empty2 {
+                grid-area: empty2;
+            }
+
+            .empty3 {
+                grid-area: empty3;
+            }
+
+            .empty4 {
+                grid-area: empty4;
+            }
+
+            .empty5 {
+                grid-area: empty5;
+            }
+
+            /* Boutons salle */
+            .salleConference,
+            .reception,
+            .salleServeurs,
+            .salleSecurite,
+            .sallePersonnel,
+            .salleArchive {
+                position: relative;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .btnSalle {
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                font-size: 12px;
+                padding: 3px 6px;
+                border-radius: 5px;
+                background-color: #3bf651;
+                color: white;
+                z-index: 10;
+                cursor: pointer;
+            }
+
+            /* Modal contenu */
+            #salleContent h2 {
+                font-size: 1.25rem;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            /* Responsive */
+            @media (max-width: 1024px) {
+                .parent {
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+                }
+            }
+
+            @media (max-width: 768px) {
+                .parent {
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: repeat(auto-fit, minmax(80px, 1fr));
+                    gap: 5px;
+                }
+
+                .btnSalle {
+                    font-size: 10px;
+                    padding: 2px 4px;
+                }
+            }
+        </style>
+
+        <script>
+            const btnSalles = document.querySelectorAll(".btnSalle");
+            const salleModal = document.getElementById("salleModal");
+            const salleContent = document.getElementById("salleContent");
+            const closeSalleModal = document.getElementById("closeSalleModal");
+
+            btnSalles.forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                    const salleDiv = e.target.parentElement;
+                    const salleName = salleDiv.textContent.trim().split("\n")[0];
+                    // Contenu dynamique du modal
+                    salleContent.innerHTML = `
+            <h2>${salleName}</h2>
+            <p>Ajouter ici les employés ou infos de cette salle.</p>
+        `;
+                    salleModal.classList.remove("hidden");
+                });
+            });
+
+            closeSalleModal.addEventListener("click", () => salleModal.classList.add("hidden"));
+        </script>
+
     </main>
     <script src="main.js"></script>
 </body>

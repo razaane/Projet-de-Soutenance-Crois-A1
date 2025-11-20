@@ -1,4 +1,4 @@
-.PlanSection {
+/* .PlanSection {
     background-image: url("./images/background.jpg");
     background-size: cover;
     background-position: center;
@@ -79,7 +79,7 @@
 
 .empty5 {
     grid-area: empty5;
-}
+} */
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
